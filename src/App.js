@@ -21,6 +21,7 @@ class App extends Component {
         <img src={require('./assets/biscoito.png')} alt="biscoito"></img>
         <Botao />
         <h3>Frase aleatória...</h3>
+        <h4>teste</h4>
       </div>
     );
   }
