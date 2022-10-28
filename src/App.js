@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      textoFrase: '',
+    };
+
+    this.quebraBiscoito = this.quebraBiscoito.bind(this);
 
     this.frases = [
       'Siga os bons e aprenda com eles.',
@@ -15,13 +20,24 @@ class App extends Component {
       'A maior barreira para o sucesso é o medo do fracasso.',
     ];
   }
+
+  quebraBiscoito() {
+    let state = this.state;
+    let numeroaleatorio = Math.floor(Math.random() * this.frases.length);
+    state.textoFrase = '"' + this.frases[numeroaleatorio] + '"';
+    this.setState(state);
+  }
+
   render() {
     return (
-      <div>
-        <img src={require('./assets/biscoito.png')} alt="biscoito"></img>
-        <Botao />
-        <h3>Frase aleatória...</h3>
-        <h4>teste</h4>
+      <div className="container">
+        <img
+          src={require('./assets/biscoito.png')}
+          alt="biscoito"
+          className="imagem"
+        ></img>
+        <Botao nome="Abrir biscoito" acaoBtn={this.quebraBiscoito} />
+        <h3 className="textoFrase">{this.state.textoFrase}</h3>
       </div>
     );
   }
@@ -31,7 +47,7 @@ class Botao extends Component {
   render() {
     return (
       <div>
-        <button>Abrir biscoito</button>
+        <button onClick={this.props.acaoBtn}>{this.props.nome}</button>
       </div>
     );
   }
